@@ -37,6 +37,7 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <AuthProvider>
         <Routes>
+          {/* Dedicated /doctor routes (FastAPI & standard path) */}
           <Route path="/doctor/login" element={<LoginRoute><LoginPage /></LoginRoute>} />
           <Route path="/doctor/overview" element={<ProtectedRoute><OverviewPage /></ProtectedRoute>} />
           <Route path="/doctor/patients" element={<ProtectedRoute><PatientsPage /></ProtectedRoute>} />
@@ -47,6 +48,19 @@ createRoot(document.getElementById('root')!).render(
           <Route path="/doctor/access-consent" element={<ProtectedRoute><AccessConsentPage /></ProtectedRoute>} />
           <Route path="/doctor/audit-history" element={<ProtectedRoute><AuditHistoryPage /></ProtectedRoute>} />
           <Route path="/doctor/settings" element={<ProtectedRoute><SettingsPage /></ProtectedRoute>} />
+
+          {/* Standalone Netlify root route aliases */}
+          <Route path="/login" element={<LoginRoute><LoginPage /></LoginRoute>} />
+          <Route path="/overview" element={<ProtectedRoute><OverviewPage /></ProtectedRoute>} />
+          <Route path="/patients" element={<ProtectedRoute><PatientsPage /></ProtectedRoute>} />
+          <Route path="/patients/:patientId" element={<ProtectedRoute><PatientDetailPage /></ProtectedRoute>} />
+          <Route path="/shared-records" element={<ProtectedRoute><SharedRecordsPage /></ProtectedRoute>} />
+          <Route path="/continuity-review" element={<ProtectedRoute><ContinuityReviewPage /></ProtectedRoute>} />
+          <Route path="/follow-ups" element={<ProtectedRoute><FollowUpsPage /></ProtectedRoute>} />
+          <Route path="/access-consent" element={<ProtectedRoute><AccessConsentPage /></ProtectedRoute>} />
+          <Route path="/audit-history" element={<ProtectedRoute><AuditHistoryPage /></ProtectedRoute>} />
+          <Route path="/settings" element={<ProtectedRoute><SettingsPage /></ProtectedRoute>} />
+
           <Route path="/" element={<Navigate to="/doctor/login" replace />} />
           <Route path="*" element={<Navigate to="/doctor/login" replace />} />
         </Routes>
